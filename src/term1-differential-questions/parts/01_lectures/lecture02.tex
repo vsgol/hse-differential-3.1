@@ -1,1 +1,214 @@
 \Subsection{Лекция 2}
+
+\begin{theorem}[Арцеоа-Асколи]\thmslashn 
+	
+	$\{f_n\}; \,\,f_n \in C[a, b]$
+	
+	$f_n$ равномерно ограниченны и равност. непрерывны
+	
+	Тогда $\exists f_{n_k} \to \varphi \in C[a, b]$ 
+	
+\end{theorem}
+
+\begin{lemma}[2]\thmslashn
+	
+	Если $M \in C[a, b]$
+	
+	$\exists K: |f(x)| < K\quad \forall x \in [a, b], \forall f \in M$
+	
+	$\forall \varepsilon > 0\, \exists \delta > 0:$ если $|x_ 1 - x_2| < \delta$, то $|f(x_1) - f(x_2)| < \varepsilon\,\forall f \in M$
+	
+	То $\exists$ конечная $\varepsilon$-сеть $\forall \varepsilon > 0$
+	
+\end{lemma}
+
+\begin{remark}\thmslashn
+
+	Если мы докажем лемму 2, то с помощью леммы 1 можно доказать теорему
+
+\end{remark}
+
+\begin{proof}\thmslashn
+	
+	Фиксируем $\varepsilon > 0, \, \varepsilon = \frac{k}{N}$
+	
+	Строим решетку с шагом $\delta$ по горизонтали и с шагом $\varepsilon$ по вертикали
+	
+	Берем все ломанные по сетке и заметим, что их конечное кол-во. 
+	
+	Докажем, что ломанные являются $\varepsilon$-сетью для функций из $M$ 
+	
+	$f \in M$. Пусть $\psi_k$ -- ближайший узел для $f(x_k)$.
+	
+	Рассмотрим $\psi(x)$ -- ломанная: $\psi(x_k) = \psi_k$
+	
+	Докажем, что $\rho(f, \psi) < 5\varepsilon$
+	
+	$(?)\, \max_{x\in[a, b]}|f(x) - \psi(x)| < 5\varepsilon$
+	
+	$\forall m \quad |f(x_m) - \psi(x_m)| < \varepsilon$ по определению $\psi$
+	
+	$\forall x \in [x_m, x_{m+1}]:\,\, |f(x) - \psi(x)| \leqslant |f(x) - f(x_m)| + |f(x_m) - \psi(x)| \leqslant \varepsilon + |f(x_m) - \psi(x_m)| + |\psi(x_m) - \psi(x)| \leqslant 2\varepsilon + |\psi(x_m) - \psi(x_{m+1})| \leqslant 2\varepsilon + |\psi(x_m) - f(x_m)| + |f(x_m) - f(x_{m+1})| + |f(x_{m+1}) - \psi(x_{m+1})| \leqslant 5\varepsilon$
+	
+	Успех
+
+\end{proof}
+
+\begin{proof}[теоремы А-А]\thmslashn
+	
+	По лемме 1 если существует конечная $\varepsilon$-сеть $\forall \varepsilon$, то $\exists \varphi$
+	
+\end{proof}
+
+\begin{exerc}\thmslashn
+	\begin{enumerate}
+		\item 
+		К лемме 2: доказать, что обратное тоже верно
+
+		\item
+		К Т. А-А: доказать, что обратное тоже верно
+
+	\end{enumerate}
+\end{exerc}
+
+\begin{remark_author}\thmslashn
+	\[
+	\begin{cases}
+		y'(x) &= F(x, y(x))\\
+		y(x_0)&= y_0\\
+	\end{cases}
+	\]
+	$F\in C(D), y_0\in D$
+
+	Идея решения
+	
+	\TODO Блин я не записал(((
+
+\end{remark_author}
+
+\begin{properties}\thmslashn
+
+	$Q = \{(x, y) | |x - x_0| \leqslant A, |y - y_0| \leqslant B\} \subset D$
+
+	$Q$ -- компакт $\Rightarrow \max_{Q} F(x, y) = M$ 
+
+	$n = \min\left(A, \frac{B}{M}\right)$
+	\begin{enumerate}
+		\item
+		Тогда на $[x_0, x_0 + h]$ ломаные Эйлера для некоторого $\delta = \frac{n}{N}$ остаются внутри $Q$ за $N$ шагов
+		
+		\begin{proof}\thmslashn
+			
+			Все $x_k: |x_k - x_0| \leqslant A$
+			
+			$|y_k - y_0| \leqslant |y_k - y_{k-1}| + \ldots + |y_1 - y_0| = |F(x_{k-1} - y_{k-1})| \cdot |x_k - x_{k-1}| + \ldots + |F(x_0, y_0)|\cdot|x_{1} - x_0| \leqslant M(|x_{k} - x_{k-1}| + \ldots + |x_1 - x_0|) = M\cdot \delta \cdot k \leqslant M \cdot \delta \cdot N \leqslant M\cdot n \leqslant B$
+			
+		\end{proof}
+		
+		\item
+		$\forall \varepsilon > 0$ для достаточно большого $N$ ломанная Эйлера для $\delta = \frac{n}{N}$
+		
+		\begin{enumerate}
+			\item
+			$(x, \psi(x)) \in D\,\,\forall x \in [x_0, x_0 + h]$
+			
+			\item
+			$|\psi'(x) - F(x, \psi(x))| < \varepsilon \,\,\forall x \in [x_0, x_0 + h]$ кроме точек дробления
+
+		\end{enumerate}
+
+		\begin{proof}\thmslashn
+
+			Пункт $1)$ есть по лемме 1 (даже $\in Q$)
+
+			Пункт $2)$ $F \in C(Q), \,\, Q$ -- компакт $\Rightarrow F$ равномерно непрерывна
+
+			$\exists \delta_1:$ если $|x_1 - x_2| < \delta_1$ и $|y_1 - y_2| < \delta_1$, то $|F(x_1, y_1) - F(x_2, y_2)| < \varepsilon$
+
+			Выберем $N, \,\,\delta = \frac{n}{N}$, что $\delta < \frac{\delta_1}{M}$ и $\delta < \delta_1$
+
+			Пусть $x_0, x_1, \ldots, x_k, \ldots, x_n$ -- точки дробления
+
+			$\psi'(x) = F(x_k, y_k)$ для $x \in [x_k, x_{k+1}]$
+
+			$\psi'(x) = |F(x_k, \psi(x_k)) - F(x, \psi(x))| < \varepsilon$ 
+
+			Надо доказать, что разность аргументов $F(x_k, \psi(x_k))$ и $F(x, \psi(x)$ меньше, чем $\delta_1$
+
+			$|x_k - x| < \delta \leqslant \delta_1;\,\,|\psi(x_k) - \psi(x)| < |\psi(x_k) - \psi(x_{k+1})| < M \cdot \delta \leqslant \delta_1$
+
+		\end{proof}
+
+		\item
+		$f_n \to \varphi$ равномерно
+
+		Тогда $F(x, f_n(x)) \to F(x, \phi(x))$ равномерно на $[a, b]$
+
+		\begin{proof}\thmslashn
+
+			$|F(x, y_1) - F(x, y_2)| < \varepsilon$
+
+			при $|y_1 - y_2| < \delta$ (т.к. $F$ равномерно непрерывна на $Q$)
+
+			$f_n \to \phi$ равномерно $\Leftrightarrow \max_{x\in[x_0, x_0 + h]} |f_n(x) - \phi(x)| \to 0$ при $n \to \infty$
+
+			$\forall \delta > 0\,\, \exists N: \,\, \forall n > N\quad |f_n(x) - \phi(x)| < \delta\, \forall x \in [x_0, x_0 + h]$
+
+			Итого: $\forall \varepsilon > 0\, \exists N: \, \forall n > N\quad |F(x, f_n(x)) - F(x, \phi(x))| < \varepsilon \, \forall x \in [x_0, x_0 + h]$
+
+		\end{proof}
+
+		\begin{remark}\thmslashn
+
+			Все рассуждения повторяются на $[x_0 - h, x_0]$
+
+		\end{remark}
+	\end{enumerate}
+\end{properties}
+
+\begin{theorem}[Пеано]\thmslashn 
+
+	Пусть $A, B, Q, M$ и $h$ как ранее
+	
+	Тогда на $[x_0 - h, x_0 + h]$ существует решение задачи Коши
+
+\end{theorem}
+
+\begin{proof}\thmslashn
+
+	Возьмем убывающую последовательность $\varepsilon_k \to $. Строим $\psi_k$ по лемме 2 для $\varepsilon = \varepsilon_k$ 
+	
+	\begin{enumerate}
+		\item
+		$\psi_k$ -- равномерно ограничена:
+
+		$|\psi_k(x) - y_0| \leqslant B \Rightarrow |\psi_k(x)| \leqslant B + |y_0|$
+
+		\item
+		$\psi_k$ -- равностепенно непрерывны:
+		
+		$|\psi_k(x) - \psi_k(\~{x})| \leqslant M|x - \~{x}|$ если $x, \~{x} \in [x_m, x_{m+1}] \Rightarrow \forall x, \~{x} \in [x_0 - h, x_0 + h]$
+		
+		$\delta$ по $\epsilon$ строится как $\delta = \frac{\varepsilon}{M}$
+		
+		Тогда по теореме А-А $\exists \psi: \psi_k \to \psi$ раномерно на $[x_0 - h, x_0 + h]$
+		
+		Докажем, что $ \psi(x) = y_0 + \int\limits_{x_0}^x F(x, \psi(x))\,dx$
+		
+		$\psi_k(x) = y_0 + \int\limits_{x_0}^x F(x, \psi_k(x))\,dx + \int\limits_{x_0}^x \omega_k(x)\,dx$, т.к. $\phi_k(x) = \psi_k(x_0) + \int\limits_{x_0}^x \psi_k'(x)\,dx$
+		
+		где $\omega_k(x) = \psi_k'(x) - F(x, \psi(x))$  кроме точке дробления
+		
+		$\int\limits_{x_0}^x \omega_k(x)\,dx \to 0$
+		
+		$\abs{\int\limits_{x_0}^x \omega_k(x)\,dx} \leqslant \int\limits_{x_0}^x \abs{\omega_k(x)}\,dx \leqslant \varepsilon_k \cdot |x - x_0| \leqslant \varepsilon_k \cdot n \to 0$ по лемме 2
+		
+		по лемме 3 $\abs{ F(x, \psi_k(x)) - F(x, \psi(x))} < \varepsilon$ при достаточно больших $k$
+		
+		Тогда $\abs{\int_{x_0}^x F(x, \psi(x))\,dx - \int_{x_0}^x F(x, \psi_k(x))\,dx } \leqslant \int_{x_0}^x \abs{F(x, \psi(x)) - F(x, \psi_k(x))}\,dx < \varepsilon \cdot |x - x_0| < \varepsilon \cdot h \to 0 $
+		
+		Получаем, что $\psi$ -- решение задачи Коши
+
+	\end{enumerate}
+
+\end{proof}
